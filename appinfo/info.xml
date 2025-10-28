@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<info>
+    <id>chatstyles</id>
+    <name>Chat Style Customizer</name>
+    <summary>Custom UI cho Nextcloud Talk (căn phải tin nhắn của bạn)</summary>
+    <description>Custom giao diện cho Talk - P.CNTT 
+	</description>
+    <version>1.0.0</version>
+    <licence>AGPL</licence>
+    <author>P.CNTT-Anhpt2</author>
+    <namespace>ChatStyle</namespace>
+    <category>customization</category>
+    <dependencies>
+        <nextcloud min-version="27" max-version="31"/>
+    </dependencies>
+</info>

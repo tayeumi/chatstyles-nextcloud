@@ -1,0 +1,290 @@
+/* --- Bong bóng chat bọc theo nội dung + hiệu ứng hover cho Nextcloud Talk --- */
+.chatView{
+   background: var(--color-background-hover, #f1f0f0);
+   font-size: 14px;
+}
+
+.system-message{
+/* padding-top:5px !important; */
+padding: 2px 20px!important; 
+}
+.system .message-main{
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center !important    ;
+      align-items: center;
+}
+.system .message-main .message-main__info{
+    width: 75px !important;
+}
+
+
+
+.wrapper--system{
+    justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+    padding-inline-start:unset !important;
+}
+.messages-group__system .messages{
+    justify-content: center !important;   
+    align-items: center !important;   
+}
+
+
+/* Cấu trúc nhóm tin nhắn */
+.wrapper.messages-group {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	margin: 6px 0;
+}
+
+/* Avatar giữ nguyên */
+.messages__avatar {
+	flex-shrink: 0;
+}
+
+/* Mỗi message */
+.message {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	margin-bottom: 4px;
+    gap: 5px;
+}
+.message_own .messages .message {
+	display: flex;
+	flex-direction: row-reverse !important;
+	align-items: center !important;
+	margin-bottom: 5px;
+    gap: 5px;
+}
+
+.message-buttons-bar{
+    flex-direction: row-reverse;
+}
+.message_own .messages .message .message-body__scroll .message-buttons-bar{	
+	flex-direction: row !important;
+}
+
+.message-body__scroll{
+    position: unset !important;
+}
+
+.owntext_light ul li {	
+	align-items: flex-end !important;
+    text-align: right;	
+}
+
+
+.message_own .messages .messages__author
+{
+   display:none;
+}
+
+.owntext_light ul li {	
+	align-items: flex-end !important;
+    text-align: right;	
+}
+
+.owntext_dark ul li {	
+	align-items: flex-end !important;
+    text-align: right;	
+}
+
+[data-themes="default"] .message-main {   
+   background: #fff;
+  }
+[data-themes="light"] .message-main {   
+   background: #fff;
+  }
+
+  [data-themes="dark"] .message-main {   
+   background:  #272727;
+  }
+/* Bong bóng cơ bản */
+.message-main {
+	display: inline-block;
+	
+	color: var(--color-text, #111);
+	border-radius: 8px;
+    padding: 0px 12px;
+	margin: 2px 0;
+	line-height: 1.4;
+	max-width: 100%;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+	position: relative;
+	transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+.owntext_light .messages .message .message-body .message-main{
+    background: #e5f1ff ;
+}
+.owntext_dark .messages .message .message-body .message-main{
+    background:  #272727 !important; 
+}
+
+.message-body{
+    max-width: 80%;
+}
+
+.rich-text--wrapper-markdown{	
+   padding-top:10px;
+   word-break: break-word;
+   white-space: pre-wrap;
+   font-size: 14px;
+}
+.reactions-wrapper{
+    padding-bottom: 2px;
+}
+/* Bong bóng của mình (phải) */
+.wrapper.messages-group.own {
+	flex-direction: row-reverse;
+	align-items: flex-start;
+}
+
+.message-body.system{
+    max-width: 100% !important;
+}
+.rich-text--wrapper{
+     font-size: 14px;
+}
+.system-message{
+    font-size: 13px;
+}
+
+/* Thời gian hiển thị */
+.message-main__info {	
+	color: var(--color-text-maxcontrast, #777);	
+        font-size: 11px !important;
+        padding-bottom: 5px;
+ align-self: flex-end;
+  text-align: right;
+  width: 100% !important;
+}
+.wrapper.messages-group.own .message-main__info {
+	text-align: right;
+	width: 100%;
+}
+
+/* --- Dark mode --- */
+@media (prefers-color-scheme: dark) {
+	.message-main__text {
+		
+		color: #000000;
+		box-shadow: none;
+	}	
+   .message-main{
+    background: #272727 !important; 
+    }
+    .owntext_light .messages .message .message-body .message-main{
+    background:  #272727 !important; 
+}
+	/* .wrapper.messages-group:not(.own) .message-main__text::after {
+		border-right-color: #2f3136;
+	}
+	.wrapper.messages-group:not(.own) .message-main__text:hover::after {
+		border-right-color: #3a3c43;
+	} */
+
+ 
+}
+
+.message-main{
+display: block !important;
+}
+/* .message-main__text {
+  transition: all 0.2s ease;
+}
+.message-main__text:hover {
+  transform: scale(1.02);
+} */
+
+/* Ô nhập tin nhắn chính */
+.new-message-form {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-background-hover, #f8f9fb);
+    border: 1px solid var(--color-border, #d1d5db);
+    border-radius: 12px;
+    padding: 6px 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+}
+
+/* Khi focus vào vùng nhập */
+.new-message-form:focus-within {
+    background-color: var(--color-background, #fff);
+    border-color: var(--color-primary, #1d72b8);
+    box-shadow: 0 0 0 3px rgba(29,114,184,0.2);
+}
+
+/* Các nút icon (emoji, plus, dots, mic, ...) */
+.new-message-form button.button-vue {
+    color: var(--color-text-lighter, #6b7280);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.new-message-form button.button-vue:hover {
+   /* background-color: rgba(0,0,0,0.05); */
+    color: var(--color-primary, #1d72b8);
+}
+
+/* Ô nhập nội dung text - tăng chiều cao */
+.rich-contenteditable__input {
+    min-height: 48px; /* trước là 38px, tăng lên 48 cho cao hơn */
+    max-height: 180px; /* có thể cuộn khi nhập dài */
+    overflow-y: auto;
+    flex: 1;
+    background: transparent;
+    border: none !important;
+    outline: none !important;
+    padding: 12px 12px; /* tăng padding cho thoáng hơn */
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-text, #111);
+    font-family: system-ui, sans-serif;
+}
+
+
+/* Placeholder */
+.rich-contenteditable__input--empty:before {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Icon emoji và mic nằm gọn */
+.new-message-form__emoji-picker,
+.audio-recorder,
+.action-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hiệu ứng hover đẹp hơn */
+.new-message-form__emoji-picker button:hover,
+.audio-recorder button:hover {
+    background-color: rgba(29,114,184,0.1);
+}
+
+/* Giảm kích thước icon một chút */
+.material-design-icon__svg {
+    width: 18px;
+    height: 18px;
+}
+
+.reply-icon svg {
+  display: none; /* Ẩn SVG gốc */
+}
+
+.reply-icon::before {
+  content: '❞';  /* Hiển thị dấu ngoặc kép */
+  font-size: 20px;
+  color: currentColor;
+}
+
+.file-preview .name-container{
+max-width:180px;
+}
