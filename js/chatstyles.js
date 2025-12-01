@@ -2,11 +2,25 @@ console.log("[ChatStyle] Loaded custom chat style");
 
 const currentUser = OC.getCurrentUser()?.uid || "";
 
+/// Custom navigation handling cho trang tin tức dùng iframe. inside url to url outside
+window.addEventListener("message", (event) => {
+  if (!event.data || event.data.type !== "external-site-navigate") return;
+
+  const slug = event.data.path.replace("/news/", "");
+
+  console.log("[ChatStyle] Received navigation message:", slug);
+
+  const matches = window.location.pathname.match(/\/apps\/external\/(\d+)/);
+  const externalId = matches ? matches[1] : null;
+
+  window.history.replaceState({}, "", `/apps/external/${externalId}/${slug}`);
+});
+
 //console.log("currentUser", currentUser);
 
 function markOwnMessages() {
   if (!currentUser) return;
-  const theme=getCurrentTheme();
+  const theme = getCurrentTheme();
 
   document.querySelectorAll(".wrapper.messages-group").forEach((group) => {
     const avatarImg = group.querySelector(".messages__avatar img");
@@ -24,22 +38,18 @@ function markOwnMessages() {
         // console.log(`[ChatStyle] Marked own message group: ${sender}`);
       }
     } else {
-
       group.classList.remove("own");
       group.classList.remove(`owntext_${theme}`);
       group.classList.remove("message_own");
-
     }
-    
   });
 }
 
 function getCurrentTheme() {
   const theme = document.body.getAttribute("data-themes");
-  if (theme && theme=='dark') return theme; // 'dark' hoặc 'light' 
+  if (theme && theme == "dark") return theme; // 'dark' hoặc 'light'
   return "light"; // fallback
 }
-
 
 // Gọi ngay và theo dõi thay đổi DOM
 markOwnMessages();
