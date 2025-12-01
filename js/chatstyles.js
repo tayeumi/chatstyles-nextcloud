@@ -2,18 +2,25 @@ console.log("[ChatStyle] Loaded custom chat style");
 
 const currentUser = OC.getCurrentUser()?.uid || "";
 
-/// Custom navigation handling cho trang tin tức dùng iframe. inside url to url outside
+/// Custom navigation handling cho trang tin tức dùng iframe. inside url to url outside - ho tro ca /news/
 window.addEventListener("message", (event) => {
   if (!event.data || event.data.type !== "external-site-navigate") return;
 
   const slug = event.data.path.replace("/news/", "");
 
-  console.log("[ChatStyle] Received navigation message:", slug);
+  //console.log("[ChatStyle] Received navigation message:", slug);
 
   const matches = window.location.pathname.match(/\/apps\/external\/(\d+)/);
   const externalId = matches ? matches[1] : null;
-
-  window.history.replaceState({}, "", `/apps/external/${externalId}/${slug}`);
+  //console.log("externalId", externalId);
+  if (externalId)
+    window.history.replaceState({}, "", `/apps/external/${externalId}/${slug}`);
+  else {
+    // console.log(window.location.pathname);
+    // Cập nhật URL Nextcloud
+    if (slug != "") window.history.replaceState({}, "", `/news/${slug}`);
+    else window.history.replaceState({}, "", `/news/`);
+  }
 });
 
 //console.log("currentUser", currentUser);
