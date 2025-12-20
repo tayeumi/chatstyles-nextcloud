@@ -13,15 +13,32 @@ window.addEventListener("message", (event) => {
   const matches = window.location.pathname.match(/\/apps\/external\/(\d+)/);
   const externalId = matches ? matches[1] : null;
   //console.log("externalId", externalId);
-  if (externalId)
-    window.history.replaceState({}, "", `/apps/external/${externalId}/${slug}`);
-  else {
+  if (externalId) {
+    if (externalId == 14) {
+      window.history.replaceState({}, "", `/news/${slug}`);
+    } else {
+      window.history.replaceState(
+        {},
+        "",
+        `/apps/external/${externalId}/${slug}`
+      );
+    }
+  } else {
     // console.log(window.location.pathname);
     // Cập nhật URL Nextcloud
     if (slug != "") window.history.replaceState({}, "", `/news/${slug}`);
     else window.history.replaceState({}, "", `/news/`);
   }
 });
+
+const matches_ = window.location.pathname.match(/\/apps\/external\/(\d+)/);
+const externalId_ = matches_ ? matches_[1] : null;
+//console.log("externalId", externalId);
+if (externalId_) {
+  if (externalId_ == 14) {
+    window.history.replaceState({}, "/apps/external/14/", `/news/`);
+  }
+}
 
 //console.log("currentUser", currentUser);
 
