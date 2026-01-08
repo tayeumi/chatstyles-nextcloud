@@ -12,5 +12,7 @@ class Application extends App {
         // Thêm JS và CSS vào toàn bộ trang
         Util::addScript('chatstyles', 'chatstyles');
         Util::addStyle('chatstyles', 'chatstyles');
+    
+         Util::addScript('chatstyles', 'filesexport');
     }
 }
