@@ -20,7 +20,7 @@ window.addEventListener("message", (event) => {
       window.history.replaceState(
         {},
         "",
-        `/apps/external/${externalId}/${slug}`
+        `/apps/external/${externalId}/${slug}`,
       );
     }
   } else {
@@ -28,6 +28,31 @@ window.addEventListener("message", (event) => {
     // Cập nhật URL Nextcloud
     if (slug != "") window.history.replaceState({}, "", `/news/${slug}`);
     else window.history.replaceState({}, "", `/news/`);
+  }
+});
+
+window.addEventListener("message", async (event) => {
+  const data = event.data;
+
+  if (data?.type === "REQUEST_SHARE") {
+    const realURL = window.location.href;
+
+    const shareData = {
+      title: data.title || "Chia sẻ",
+      text: data.text || "",
+      url: realURL,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (e) {
+        console.error("Share failed", e);
+      }
+    } else {
+      await navigator.clipboard.writeText(realURL);
+      //alert("Đã copy vào clipboard!");
+    }
   }
 });
 
